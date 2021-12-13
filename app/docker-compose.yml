@@ -31,7 +31,6 @@ services:
     volumes:
       - ./.docker/mongo/mongod.conf:/etc/mongod.conf
       - ./.docker/mongo/db/:/data/db/
-      - ./.docker/mongo/log/:/var/log/mongodb/
       - ./.docker/mongo/initdb.d/:/docker-entrypoint-initdb.d/
       - ./.docker/mongo/home/mongodb/:/home/mongodb/
       - ./mongodumps/neworleans:/tmp/neworleans
