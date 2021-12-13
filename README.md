@@ -5,6 +5,12 @@ First `cd app`
 docker-compose run --rm app composer install
 ```
 
+### set up .env file
+If you do not have a .env file, run
+```
+cp .env.example .env
+```
+
 ### generate new app key 
 ```
 docker-compose run --rm app php artisan key:generate
