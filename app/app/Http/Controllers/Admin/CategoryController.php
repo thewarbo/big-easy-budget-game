@@ -54,7 +54,7 @@ class CategoryController extends AdminController{
 		$this->bread([
 			route('admin.budgets.show', $budget->id)             => 'Budget',
 			route('admin.budgets.categories.index', $budget->id) => 'Categories',
-			route('admin.budgets.categories.edit', $budget->id)  => 'Edit',
+			route('admin.budgets.categories.edit', [$budget->id, $category->id])  => 'Edit',
 		]);
 
 		return view('admin.categories.edit', compact('budget', 'title', 'category'));

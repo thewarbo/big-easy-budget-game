@@ -109,7 +109,7 @@ class OrganizationController extends AdminController{
 		$this->bread([
 			route('admin.budgets.show', $budget->id)                => 'Budget',
 			route('admin.budgets.organizations.index', $budget->id) => 'Orgs',
-			route('admin.budgets.organizations.edit', $budget->id)  => 'Edit',
+			route('admin.budgets.organizations.edit', [$budget->id, $organization->id])  => 'Edit',
 		]);
 
 		return view('admin.organizations.edit', compact('budget', 'title', 'organization', 'divisions', 'poll'));
