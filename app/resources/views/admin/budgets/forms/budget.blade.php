@@ -30,7 +30,7 @@
   <div class="form-group form-group-lg">
       {!! Form::label('clone_budget_id', 'Copy Organization Data from:', ['class' => 'col-md-3 control-label control-label-lg']) !!}
       <div class="col-md-6">
-      {!! Form::select('clone_budget_id', App\Models\Budget::all()->sortBy('name')->lists('name', '_id'), null, ['placeholder' => 'Pick a budget...', 'class' => 'form-control']); !!}
+      {!! Form::select('clone_budget_id', App\Models\Budget::all()->sortBy('name')->pluck('name', '_id'), null, ['placeholder' => 'Pick a budget...', 'class' => 'form-control']); !!}
     </div>
   </div>
   @endif

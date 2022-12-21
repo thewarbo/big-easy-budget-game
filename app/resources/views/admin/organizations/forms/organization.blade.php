@@ -32,7 +32,7 @@
   <div class="form-group form-group-lg">
     {!! Form::label('category_id', 'Category', ['class' => 'col-md-3 control-label control-label-lg']) !!}
     <div class="col-md-6">
-      {!! Form::select('category_id', $budget->categories()->orderBy('name')->lists('name', '_id'), null, ['placeholder' => 'Pick a category...', 'class' => 'form-control']); !!}
+      {!! Form::select('category_id', $budget->categories()->orderBy('name')->pluck('name', '_id'), null, ['placeholder' => 'Pick a category...', 'class' => 'form-control']); !!}
       <span class="help-block">Optional</span>
     </div>
   </div>
