@@ -6,15 +6,12 @@ Route::group(['domain' => 'peoplesbudget.{tld}'], function($tld){
 });
 
 // Auth
-Route::get('auth/login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@getLogin']);
-Route::post('auth/login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@postLogin']);
-Route::post('auth/register', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@postRegister']);
-Route::get('auth/logout', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@getLogout']);
+
 
 // Social Auth
 Route::pattern('oauth', 'facebook|linkedin|twitter|google');
-Route::get('{oauth}/authorize', 'Auth\AuthController@socialiteAuthorize');
-Route::get('{oauth}/login', 'Auth\AuthController@socialiteLogin');
+Route::get('{oauth}/authorize', 'Auth\LoginController@socialiteAuthorize');
+Route::get('{oauth}/login', 'Auth\LoginController@socialiteLogin');
 
 // Frontend
 Route::group(['middleware' => ['auth']], function (){
