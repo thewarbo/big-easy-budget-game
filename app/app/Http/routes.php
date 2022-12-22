@@ -23,14 +23,14 @@ Route::get('{oauth}/login', 'Auth\LoginController@socialiteLogin');
 Route::group(['middleware' => ['auth', 'web']], function (){
 
     Route::get('/budget/list', ['as' => 'game.list', 'uses' => 'GameController@gameList']);
-    Route::get('/budget/{budgets}', ['as' => 'game.intro', 'uses' => 'GameController@intro']);
-    Route::get('/budget/{budgets}/play', ['as' => 'game.play', 'uses' => 'GameController@play']);
-    Route::post('/budget/{budgets}/thanks', ['as' => 'game.save', 'uses' => 'GameController@save', 'middleware' => 'filter.input.result']);
-    Route::get('/budget/{budgets}/thanks-test', ['as' => 'game.save-test', 'uses' => 'GameController@save']);
+    Route::get('/budget/{budget}', ['as' => 'game.intro', 'uses' => 'GameController@intro']);
+    Route::get('/budget/{budget}/play', ['as' => 'game.play', 'uses' => 'GameController@play']);
+    Route::post('/budget/{budget}/thanks', ['as' => 'game.save', 'uses' => 'GameController@save', 'middleware' => 'filter.input.result']);
+    Route::get('/budget/{budget}/thanks-test', ['as' => 'game.save-test', 'uses' => 'GameController@save']);
 
     // Ajax
     Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function (){
-        Route::get('/organizations/{organizations}/details', ['as' => 'ajax.organizations.details', 'uses' => 'OrganizationController@details']);
+        Route::get('/organizations/{organization}/details', ['as' => 'ajax.organizations.details', 'uses' => 'OrganizationController@details']);
     });
 
 });
@@ -41,10 +41,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
     // Modules
-    Route::get('/budgets/{budgets}/open', ['as' => 'budgets.open', 'uses' => 'BudgetController@open']);
-    Route::get('/budgets/{budgets}/pause', ['as' => 'budgets.pause', 'uses' => 'BudgetController@pause']);
-    Route::get('/budgets/{budgets}/close', ['as' => 'budgets.close', 'uses' => 'BudgetController@close']);
-    Route::get('/budgets/{budgets}/export/{type}', ['as' => 'budgets.export', 'uses' => 'BudgetController@download']);
+    Route::get('/budgets/{budget}/open', ['as' => 'budgets.open', 'uses' => 'BudgetController@open']);
+    Route::get('/budgets/{budget}/pause', ['as' => 'budgets.pause', 'uses' => 'BudgetController@pause']);
+    Route::get('/budgets/{budget}/close', ['as' => 'budgets.close', 'uses' => 'BudgetController@close']);
+    Route::get('/budgets/{budget}/export/{type}', ['as' => 'budgets.export', 'uses' => 'BudgetController@download']);
 
     Route::resource('budgets', 'BudgetController');
     Route::resource('budgets.organizations', 'OrganizationController');
