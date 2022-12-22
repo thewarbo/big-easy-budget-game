@@ -21,6 +21,19 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\VerifyAccount::class
     ];
 
+        /**
+     * The application's route middleware groups.
+     *
+     * @var array
+     */
+    protected $middlewareGroups = [
+        'web' => [
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+        ],
+
+    ];
+
     /**
      * The application's route middleware.
      *
@@ -29,6 +42,8 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'role' => \App\Http\Middleware\VerifyRole::class,
         'verify.account' => \App\Http\Middleware\VerifyAccount::class,

@@ -7,6 +7,12 @@ Route::group(['domain' => 'peoplesbudget.{tld}'], function($tld){
 
 // Auth
 
+Route::get('auth/login', ['as' => 'auth.login', 'uses' => 'Auth\LoginController@getLogin']);
+Route::post('auth/login', ['as' => 'auth.login', 'uses' => 'Auth\LoginController@login']);
+Route::post('auth/register', ['as' => 'auth.register', 'uses' => 'Auth\LoginController@postRegister']);
+Route::get('auth/logout', ['as' => 'auth.logout', 'uses' => 'Auth\LoginController@getLogout']);
+Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 // Social Auth
 Route::pattern('oauth', 'facebook|linkedin|twitter|google');
@@ -14,7 +20,7 @@ Route::get('{oauth}/authorize', 'Auth\LoginController@socialiteAuthorize');
 Route::get('{oauth}/login', 'Auth\LoginController@socialiteLogin');
 
 // Frontend
-Route::group(['middleware' => ['auth']], function (){
+Route::group(['middleware' => ['auth', 'web']], function (){
 
     Route::get('/budget/list', ['as' => 'game.list', 'uses' => 'GameController@gameList']);
     Route::get('/budget/{budgets}', ['as' => 'game.intro', 'uses' => 'GameController@intro']);
@@ -30,15 +36,15 @@ Route::group(['middleware' => ['auth']], function (){
 });
 
 // Admin
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin']], function (){
+Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'web', 'role:admin']], function (){
 
-    Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+    Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
     // Modules
-    Route::get('/budgets/{budgets}/open', ['as' => 'admin.budgets.open', 'uses' => 'BudgetController@open']);
-    Route::get('/budgets/{budgets}/pause', ['as' => 'admin.budgets.pause', 'uses' => 'BudgetController@pause']);
-    Route::get('/budgets/{budgets}/close', ['as' => 'admin.budgets.close', 'uses' => 'BudgetController@close']);
-    Route::get('/budgets/{budgets}/export/{type}', ['as' => 'admin.budgets.export', 'uses' => 'BudgetController@download']);
+    Route::get('/budgets/{budgets}/open', ['as' => 'budgets.open', 'uses' => 'BudgetController@open']);
+    Route::get('/budgets/{budgets}/pause', ['as' => 'budgets.pause', 'uses' => 'BudgetController@pause']);
+    Route::get('/budgets/{budgets}/close', ['as' => 'budgets.close', 'uses' => 'BudgetController@close']);
+    Route::get('/budgets/{budgets}/export/{type}', ['as' => 'budgets.export', 'uses' => 'BudgetController@download']);
 
     Route::resource('budgets', 'BudgetController');
     Route::resource('budgets.organizations', 'OrganizationController');

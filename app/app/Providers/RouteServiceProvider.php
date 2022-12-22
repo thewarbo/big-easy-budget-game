@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Account;
-use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -20,26 +20,24 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
-        $router->model('budgets', 'App\Models\Budget');
-        $router->model('organizations', 'App\Models\Organization');
-        $router->model('categories', 'App\Models\Category');
+        parent::boot();
+        Route::model('budget', 'App\Models\Budget');
+        Route::model('organization', 'App\Models\Organization');
+        Route::model('category', 'App\Models\Category');
     }
 
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->group(['namespace' => $this->namespace], function ($router) {
+        Route::group(['namespace' => $this->namespace], function ($router) {
             require app_path('Http/routes.php');
         });
     }
