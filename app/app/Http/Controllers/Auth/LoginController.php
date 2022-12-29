@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -77,16 +81,20 @@ class LoginController extends Controller
 		return Redirect::route('home.index', ['showLogin'=>'true']);
 	}
 
-	public function postRegister(){
+	public function getLogout(){
+		Auth::logout();
+	}
 
-		$validator = $this->validator(Request::all());
+	public function postRegister(Request $request){
+
+		$validator = $this->validator($request->all());
 		if($validator->fails()){
 			return Redirect::back()
 					->withErrors($validator)
 					->withInput();
 		}
 
-		$data = Request::only('name', 'email', 'password');
+		$data = $request->only('name', 'email', 'password');
 		$data['roles'] = ['user'];
 		$user = $this->create($data);
 
@@ -106,5 +114,20 @@ class LoginController extends Controller
 			'provider_user_token' => '',
 		]);
 	}
+
+	    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+    }
 
 }
