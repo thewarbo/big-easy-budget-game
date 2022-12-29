@@ -11,7 +11,8 @@
         "laravelcollective/html": "^6.0",
         "jenssegers/mongodb": "^3.0",
         "intervention/image": "^2.3",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
