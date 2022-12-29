@@ -1,5 +1,5 @@
 # FROM php:5.6.40-fpm
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 # Set working directory
 WORKDIR /var/www
