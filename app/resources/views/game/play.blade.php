@@ -25,7 +25,7 @@
 					    <span class="pb-unspent"></span>
 					    <span class="pb-max upper">of {{number_format($budget->units_total)}}</span>
 				    </div>
-					<div class="unit-label"><span class="unit-label-context">{{ucfirst(strtolower(str_plural($budget->units_label)))}}</span> left to spend</div>
+					<div class="unit-label"><span class="unit-label-context">{{ucfirst(strtolower(Str::plural($budget->units_label)))}}</span> left to spend</div>
 				</div>
 			</div>
 			<div class="col-sm-6 col-game-rules text-center">
@@ -82,7 +82,7 @@
         $('.pb-form').pb({
 	        allowance: {{$budget->units_total}},
 	        type: '{{$budget->units_label}}',
-	        type_plural: '{{str_plural($budget->units_label)}}',
+	        type_plural: '{{Str::plural($budget->units_label)}}',
 	        beforeChangeBudget: function($org, delta){
 		        hj('tagRecording', ['Changed Org Budget']);
 		        console.log('beforeChangeBudget Callback', $org, delta);
