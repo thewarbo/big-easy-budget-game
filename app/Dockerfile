@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -qy \
     unzip
 
 # Install node and deps for installing front end assets
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm i -g gulp@3.2.1 
 
