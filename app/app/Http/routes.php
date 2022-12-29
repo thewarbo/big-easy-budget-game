@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth', 'web']], function (){
 });
 
 // Admin
-Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'web', 'role:admin']], function (){
+Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'web', 'can:admin-access']], function (){
 
     Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 

@@ -165,13 +165,13 @@ return [
 		 * Application Service Providers...
 		 */
 		App\Providers\AppServiceProvider::class,
+		App\Providers\AuthServiceProvider::class,
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
 
 		/* Third Party Providers */
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
-		Bican\Roles\RolesServiceProvider::class,
 		Jenssegers\Mongodb\MongodbServiceProvider::class,
 		Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
 		Intervention\Image\ImageServiceProvider::class,
