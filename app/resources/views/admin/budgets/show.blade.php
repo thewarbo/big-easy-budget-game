@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<a href="{{ route('admin.budgets.export', ['budgets' => $budget, 'type' => 'report']) }}" class="btn btn-success">Download Report <i class="fa fa-fw fa-download"></i></a>
+	<a href="{{ route('admin.budgets.export', ['budget' => $budget, 'type' => 'report']) }}" class="btn btn-success">Download Report <i class="fa fa-fw fa-download"></i></a>
 	<br><br>
 	<div class="row">
 		<div class="col-lg-6">
