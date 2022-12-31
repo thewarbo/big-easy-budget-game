@@ -1,17 +1,25 @@
 <?php
 
 return [
-    'cambridge' => [
+    'neworleans' => [
         'name' => 'ORG NAME',
         'logo' => '/assets/img/ORG/logo.png',
         'active' => true,
         'connection' => [
             'driver'   => 'mongodb',
-            'host'     => 'candidate.32.mongolayer.com:10756,candidate.33.mongolayer.com:10654',
-            'database' => 'peoplesbudget_ORG',
-            'username' => 'user',
-            'password' => "password",
-            'options'  => ['replicaSet' => 'set-55108a1cc12d19e0ea0003f2']
+            'host'     => 'mongo',
+            'database' => 'budgetgame_dev',
+            'username' => 'budgetgame',
+	    'password' => "budgetgamepass",
+	    'options' => [
+		    'database' => 'budgetgame_dev'
+		]
         ],
+	'city' => 'New Orleans',
+	'state' => 'LA',
+	'theme' => [
+		'banner-img' => 'french-quarter.jpg',
+		'logo-img' => 'logo.gif'
+	]
     ]
 ];
