@@ -58,13 +58,13 @@ class GameController extends Controller
                 $itemData = [
                     'organization_id'     => $orgId,
                     'organization_name'   => $org->name,
-                    'category'            => (count($org->category) ? $org->category->name : null),
+                    'category'            => (isset($org->category) ? $org->category->name : null),
                     'units'               => $data['units'],
                     'units_min'           => $org->units_min,
                     'units_prev'          => $org->units_previous_period,
                     'units_other_funding' => $org->units_other_funding,
                 ];
-                if (count($org->poll) && !empty($org->poll->question)) {
+                if (isset($org->poll) && !empty($org->poll->question)) {
                     $itemData['poll_question'] = $org->poll->question;
                     // If a poll action was taken
                     if (!empty($data['poll_action'])) {
