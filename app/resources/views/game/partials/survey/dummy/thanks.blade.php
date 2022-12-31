@@ -7,7 +7,7 @@
 
 @section('grid')
 
-	@include('game.partials.survey.'.config('survey.provider').'.embed', ['surveyAccount'=>env('SURVEY_ACCOUNT_ID'), 'surveyId'=>$budget->survey_id, 'height'=>'auto'])
+	Dummy Thank You Page
 
 	<div id="TypeformFinishPopup" class="hidden">
 		<p>Just as important as your budget is the general feedback we receive in the following brief survey.</p>
